@@ -4,57 +4,69 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Thumbnail Designer Portfolio</title>
+<title>Sathvik | Thumbnail Designer</title>
 
 <style>
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
-    background: #0f172a;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #0f172a, #020617);
     color: white;
 }
 
+/* HEADER */
 header {
     text-align: center;
-    padding: 30px;
-    background: #1e293b;
+    padding: 50px 20px;
 }
 
 header h1 {
-    margin: 0;
+    font-size: 40px;
     color: #38bdf8;
 }
 
 header p {
+    font-size: 18px;
     color: #cbd5f5;
 }
 
+/* SECTION */
 section {
-    padding: 40px;
+    padding: 40px 20px;
     text-align: center;
 }
 
+/* GALLERY */
 .gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    padding: 20px;
 }
 
 .card {
     background: #1e293b;
-    border-radius: 10px;
+    border-radius: 12px;
     overflow: hidden;
-    transition: 0.3s;
+    transition: 0.4s;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+    cursor: pointer;
 }
 
 .card:hover {
-    transform: scale(1.05);
+    transform: scale(1.07);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.7);
 }
 
 .card img {
     width: 100%;
-    height: 180px;
+    height: 200px;
     object-fit: cover;
+    transition: 0.3s;
+}
+
+.card:hover img {
+    transform: scale(1.1);
 }
 
 .card h3 {
@@ -63,25 +75,58 @@ section {
 }
 
 .card p {
-    margin-bottom: 10px;
     color: #cbd5f5;
+    margin-bottom: 15px;
 }
 
+/* CONTACT */
 .contact {
     background: #1e293b;
 }
 
 button {
-    padding: 12px 20px;
+    padding: 14px 25px;
     background: #38bdf8;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
     font-weight: bold;
+    font-size: 16px;
+    transition: 0.3s;
 }
 
 button:hover {
     background: #0ea5e9;
+    transform: scale(1.05);
+}
+
+/* MODAL (CLICK TO VIEW IMAGE) */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    padding-top: 50px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.9);
+}
+
+.modal img {
+    display: block;
+    margin: auto;
+    max-width: 90%;
+    max-height: 80%;
+}
+
+.close {
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    font-size: 40px;
+    color: white;
+    cursor: pointer;
 }
 </style>
 
@@ -97,8 +142,8 @@ button:hover {
 <section>
     <h2>About Me</h2>
     <p>
-        I am a thumbnail designer who creates eye-catching and clickable thumbnails.
-        I help YouTubers increase views and engagement 🔥
+        I create eye-catching thumbnails that increase clicks and views.
+        Perfect for YouTubers who want to grow fast 🔥
     </p>
 </section>
 
@@ -107,29 +152,34 @@ button:hover {
 
     <div class="gallery">
 
-        <div class="card">
-            <img src="images/thumb1.jpeg">
-            <h3>Motivation Thumbnail</h3>
+        <div class="card" onclick="openModal('thumb1.jpeg')">
+            <img src="thumb1.jpeg">
+            <h3>Motivation</h3>
+            <p>High CTR 🔥</p>
         </div>
 
-        <div class="card">
-            <img src="images/thumb2.jpeg">
+        <div class="card" onclick="openModal('thumb2.jpeg')">
+            <img src="thumb2.jpeg">
             <h3>Travel Vlog</h3>
+            <p>Storytelling</p>
         </div>
 
-        <div class="card">
-            <img src="images/thumb3.jpeg">
+        <div class="card" onclick="openModal('thumb3.jpeg')">
+            <img src="thumb3.jpeg">
             <h3>Viral Hook</h3>
+            <p>Clickable</p>
         </div>
 
-        <div class="card">
-            <img src="images/thumb4.jpeg">
+        <div class="card" onclick="openModal('thumb4.jpeg')">
+            <img src="thumb4.jpeg">
             <h3>Food Vlog</h3>
+            <p>Aesthetic</p>
         </div>
 
-        <div class="card">
-            <img src="images/thumb5.jpeg">
-            <h3>Fitness Transformation</h3>
+        <div class="card" onclick="openModal('thumb5.jpeg')">
+            <img src="thumb5.jpeg">
+            <h3>Fitness</h3>
+            <p>Before/After 💪</p>
         </div>
 
     </div>
@@ -137,10 +187,29 @@ button:hover {
 
 <section class="contact">
     <h2>Contact Me</h2>
+    <p>Let’s work together 💼</p>
+
     <a href="https://wa.me/918317555560" target="_blank">
-        <button>Contact on WhatsApp</button>
+        <button>Hire Me on WhatsApp</button>
     </a>
 </section>
+
+<!-- MODAL -->
+<div id="modal" class="modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <img id="modalImg">
+</div>
+
+<script>
+function openModal(src) {
+    document.getElementById("modal").style.display = "block";
+    document.getElementById("modalImg").src = src;
+}
+
+function closeModal() {
+    document.getElementById("modal").style.display = "none";
+}
+</script>
 
 </body>
 </html>
